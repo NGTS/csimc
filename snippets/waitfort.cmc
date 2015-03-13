@@ -1,0 +1,6 @@
+define waitfort($time){
+	while (clock<$time*1000){
+		continue;
+	}	
+	printf("Done waiting...\n");
+}

@@ -1,0 +1,53 @@
+// Script to trace out the two poles of the
+// telescope and the celestial sphere. Use 
+// in conjunction with imsequence
+
+// wait timer
+define waitfort($time){
+	while (clock<$time*1000){
+		continue;
+	}	
+	printf("Done waiting...\n");
+}
+
+// observing pattern
+define tpol($obstime){
+	// tracking off & tracking back time
+	// 10s is assumed for the tracking spot
+	// this is used to ID the first trail
+	$0=($obstime-10)/2;
+	
+	printf("mpos=%d\n",mpos);
+	
+	clock=0;
+	vascale=100;
+	mtvel=-7410;
+	
+	// wait for the first 10s
+	// tracking at normal rate
+	printf("Tracking for 10s...\n");
+	waitfort(10);	
+	
+	printf("mpos=%d\n",mpos);
+	
+	// trace celestial pole
+	printf("Tracing the celestial pole...\n");
+	clock=0;
+	mtvel=0;
+	waitfort($0);
+	
+	printf("mpos=%d\n",mpos);
+	
+	// trace mount pole west at 2 x sidereal rate
+	printf("Tracking back at 2xSidereal Rate...\n");
+	clock=0;
+	mtvel=-7410*2;
+	waitfort($0);
+	
+	mtvel=0;
+	printf("mpos=%d\n",mpos);
+	
+	stop();
+	
+}
+

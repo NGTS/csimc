@@ -1,0 +1,14 @@
+Repo for CSIMC scripts:
+
+scripts are loaded into the csimc prompt by:
+
+$> csimc
+#> !X (where X = 0 RA or X = 1 DEC)
+#> !l script-name.cmc
+
+two-poles.cmc : a script to control the motion for the two-poles 
+                no-drift polar alignment method
+
+snippets:
+waitfort.cmc : a wait timer for actions, now incorporated into
+               two-poles.cmc
